@@ -1,0 +1,17 @@
+{
+  "name": "nova-backend",
+  "version": "1.0.0",
+  "description": "Nova — kelajak ta’limi. Express.js server.",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "reset": "node src/tozalash.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
