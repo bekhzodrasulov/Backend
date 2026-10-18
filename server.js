@@ -83,14 +83,19 @@ app.use((err, req, res, next) => {
   res.status(500).json({ xato: "Serverda xatolik yuz berdi. Birozdan keyin qayta urinib ko‘ring." });
 });
 
-app.listen(PORT, (err) => {
-  if (err) {
-    console.error(
-      err.code === "EADDRINUSE"
-        ? `${PORT}-port band. Boshqa oynada server allaqachon ishlayotgan bo‘lishi mumkin.`
-        : `Server ishga tushmadi: ${err.message}`,
-    );
-    process.exit(1);
-  }
-  console.log(`Nova serveri ishga tushdi: http://localhost:${PORT}`);
-});
+// Vercel serverni o‘zi ishga tushiradi, unga faqat app kerak
+export default app;
+
+if (!process.env.VERCEL) {
+  app.listen(PORT, (err) => {
+    if (err) {
+      console.error(
+        err.code === "EADDRINUSE"
+          ? `${PORT}-port band. Boshqa oynada server allaqachon ishlayotgan bo‘lishi mumkin.`
+          : `Server ishga tushmadi: ${err.message}`,
+      );
+      process.exit(1);
+    }
+    console.log(`Nova serveri ishga tushdi: http://localhost:${PORT}`);
+  });
+}

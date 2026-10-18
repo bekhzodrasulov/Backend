@@ -8,7 +8,10 @@ import { fileURLToPath } from "node:url";
 import { createSeed } from "./data/boshlangich.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const BAZA_FAYLI = path.join(__dirname, "..", "data", "baza.json");
+// Vercel’da faqat /tmp papkasiga yozish mumkin (u yerda ma’lumotlar vaqtinchalik saqlanadi)
+export const BAZA_FAYLI = process.env.VERCEL
+  ? path.join("/tmp", "nova", "baza.json")
+  : path.join(__dirname, "..", "data", "baza.json");
 
 function load() {
   try {
